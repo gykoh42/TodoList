@@ -21,12 +21,10 @@ function App() {
     setTodos(todos.filter((val, index) => index !== removeIdx));
   };
 
-  const toggleCompleted = (id) => {
+  const toggleCompleted = (idx) => {
     setTodos(
       todos.map((todo, index) => {
-        if (id === index) {
-          return { ...todo, completed: !todo.completed };
-        }
+        if (idx === index) return { ...todo, completed: !todo.completed };
         return todo;
       })
     );
@@ -37,22 +35,23 @@ function App() {
   };
 
   const filteredTodos = todos.filter((todo) => {
-    // if (radioState === "All") return true;
-    // if (radioState === "In Progress") return !todo.completed;
-    // if (radioState === "Completed") return todo.completed;
-    return todo.value.includes(searchTerm);
+    if (radioState === "All" && todo.value.includes(searchTerm)) return true;
+    if (radioState === "In Progress" && todo.value.includes(searchTerm))
+      return !todo.completed;
+    if (radioState === "Completed" && todo.value.includes(searchTerm))
+      return todo.completed;
   });
 
   return (
     <div className="App">
       <h1>Todo List</h1>
       <AddTodo addTodo={addTodo} />
-      {/* <input
+      <input
         type="text"
-        placeholder="검색"
         value={searchTerm}
+        placeholder="search"
         onChange={(e) => setSearchTerm(e.target.value)}
-      /> */}
+      />
       <RadioGroup changeRadioState={changeRadioState} />
       <TodoList
         todos={filteredTodos}
