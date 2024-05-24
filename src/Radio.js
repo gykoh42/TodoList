@@ -1,33 +1,31 @@
+import React from "react";
 import styled from "styled-components";
 
-const RadioGroup = ({ changeRadioState }) => {
+const RadioGroup = ({ changeRadioState, selectedState }) => {
+  const handleRadioChange = (state) => {
+    if (selectedState !== state) {
+      changeRadioState(state);
+    }
+  };
+
   return (
     <RadioGroupStyled>
-      <RadioLabel className="radio-label all">
-        <RadioInput
-          type="radio"
-          name="radio"
-          defaultChecked
-          onChange={() => changeRadioState("All")}
-        />
-        <RadioLabelText>All</RadioLabelText>
-      </RadioLabel>
-      <RadioLabel className="radio-label in-progress">
-        <RadioInput
-          type="radio"
-          name="radio"
-          onChange={() => changeRadioState("In Progress")}
-        />
-        <RadioLabelText>In Progress</RadioLabelText>
-      </RadioLabel>
-      <RadioLabel className="radio-label completed">
-        <RadioInput
-          type="radio"
-          name="radio"
-          onChange={() => changeRadioState("Completed")}
-        />
-        <RadioLabelText>Completed</RadioLabelText>
-      </RadioLabel>
+      {["All", "In Progress", "Completed"].map((state) => (
+        <RadioLabel
+          key={state}
+          selected={selectedState === state}
+          onClick={() => handleRadioChange(state)}
+        >
+          <RadioInput
+            type="radio"
+            name="radio"
+            checked={selectedState === state}
+            onChange={() => {}}
+            readOnly
+          />
+          {state}
+        </RadioLabel>
+      ))}
     </RadioGroupStyled>
   );
 };
@@ -46,7 +44,8 @@ const RadioLabel = styled.label`
   display: block;
   cursor: pointer;
   padding: 8px 16px;
-  background-color: #fff;
+  background-color: ${({ selected }) => (selected ? "#8b0000" : "#fff")};
+  color: ${({ selected }) => (selected ? "white" : "black")};
   transition: background-color 0.3s ease;
   margin: 0 5px;
   width: auto;
@@ -61,20 +60,6 @@ const RadioLabel = styled.label`
 const RadioInput = styled.input`
   opacity: 0;
   position: absolute;
-
-  &:checked {
-    & + span {
-      background-color: transparent;
-    }
-    & ~ .radio-label {
-      background-color: #8b0000;
-      color: white;
-    }
-  }
-`;
-
-const RadioLabelText = styled.span`
-  display: block;
 `;
 
 export default RadioGroup;

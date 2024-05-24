@@ -67,7 +67,10 @@ function App() {
           <SearchIconStyled />
         </SearchInputWrapper>
         <Separator />
-        <RadioGroup changeRadioState={changeRadioState} />
+        <RadioGroup
+          changeRadioState={changeRadioState}
+          selectedState={radioState}
+        />
         <TodoListWrapper>
           <TodoList
             todos={filteredTodos}
