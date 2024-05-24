@@ -1,26 +1,84 @@
 import styled from "styled-components";
+import { ReactComponent as CheckedCircle } from "./checkedCircle.svg";
+import { ReactComponent as MinusCircle } from "./minusCircle.svg";
 
 const TodoItem = ({ id, todo, toggleCompleted, removeTodo }) => {
+  if (!todo) {
+    return null;
+  }
+
   return (
     <TodoItemStyled>
-      <button onClick={() => toggleCompleted(id)}>V</button>
+      <ActionButton onClick={() => toggleCompleted(id)}>
+        <SVGStyled as={CheckedCircle} />
+      </ActionButton>
       <TodoStyled $completed={todo.completed.toString()}>
         {todo.value}
       </TodoStyled>
-      <button onClick={() => removeTodo(id)}>X</button>
+      <DeleteButton onClick={() => removeTodo(id)}>
+        <SVGStyled as={MinusCircle} />
+      </DeleteButton>
     </TodoItemStyled>
   );
 };
 
 const TodoItemStyled = styled.div`
   display: flex;
+  width: 90%;
+  align-items: center;
   justify-content: center;
-  list-style: none;
+  border: 2px solid #000;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  background-color: #f9df9d;
 `;
 
 const TodoStyled = styled.li`
+  flex: 1;
   text-decoration: ${({ $completed }) =>
     $completed === "true" ? "line-through" : "none"};
+  text-align: left;
+  padding: 10px;
+  border-left: 2px solid #000;
+  border-right: 2px solid #000;
+  font-size: 1rem;
+  font-weight: 700;
+  list-style: none;
+  margin: 0;
+`;
+
+const SVGStyled = styled.svg`
+  width: 30px;
+  height: 30px;
+  stroke: currentColor;
+`;
+
+const ActionButton = styled.button`
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    color: #8b0000;
+    transform: scale(1.4);
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+const DeleteButton = styled(ActionButton)`
+  color: #000;
+
+  &:hover {
+    color: #8b0000;
+  }
 `;
 
 export default TodoItem;
