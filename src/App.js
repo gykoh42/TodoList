@@ -108,7 +108,7 @@ const TodoWrapperStyled = styled.div`
     left: 8px;
     right: 8px;
     bottom: 8px;
-    border: 3px solid #490000;
+    border: 3px solid #8b0000;
     pointer-events: none;
   }
 `;
