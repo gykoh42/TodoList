@@ -31,19 +31,22 @@ const RadioGroup = ({ changeRadioState, selectedState }) => {
 };
 
 const RadioGroupStyled = styled.div`
+  font-family: "Petit Formal Script", cursive;
+  font-weight: 400;
+  font-style: normal;
   display: flex;
   margin-top: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
 `;
 
 const RadioLabel = styled.label`
   position: relative;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 800;
   border: 2px solid #000;
   display: block;
   cursor: pointer;
-  padding: 8px 16px;
+  padding: 5px 14px;
   background-color: ${({ selected }) => (selected ? "#8b0000" : "#fff")};
   color: ${({ selected }) => (selected ? "white" : "black")};
   transition: background-color 0.3s ease;

@@ -23,6 +23,9 @@ const TodoItem = ({ id, todo, toggleCompleted, removeTodo }) => {
 };
 
 const TodoItemStyled = styled.div`
+  font-family: "Petit Formal Script", cursive;
+  font-weight: 400;
+  font-style: normal;
   display: flex;
   width: 90%;
   align-items: center;
@@ -30,13 +33,17 @@ const TodoItemStyled = styled.div`
   border: 2px solid #000;
   margin-bottom: 10px;
   box-sizing: border-box;
-  background-color: #f9df9d;
+  background-color: #ead7ab;
 `;
 
 const TodoStyled = styled.li`
   flex: 1;
   text-decoration: ${({ $completed }) =>
     $completed === "true" ? "line-through" : "none"};
+  text-decoration-color: ${({ $completed }) =>
+    $completed === "true" ? "#8b0000" : "inherit"};
+  text-decoration-thickness: ${({ $completed }) =>
+    $completed === "true" ? "2px" : "auto"};
   text-align: left;
   padding: 10px;
   border-left: 2px solid #000;

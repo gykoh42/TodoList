@@ -34,13 +34,16 @@ const FormStyled = styled.form`
 `;
 
 const InputStyled = styled.input`
+  font-family: "Petit Formal Script", cursive;
+  font-weight: 600;
   width: 350px;
   height: 45px;
   margin-top: 10px;
   flex: 1;
   font-size: 1rem;
   margin-right: 10px;
-  padding: 10px 20px;
+  text-indent: 5px;
+  padding: 10px 15px;
   border: 1.8px solid #000;
   box-sizing: border-box;
   margin-bottom: 10px;
@@ -53,7 +56,7 @@ const InputStyled = styled.input`
 const ButtonStyled = styled.button`
   font-size: 3rem;
   border: none;
-  background-color: #f9df9d;
+  background-color: #c6a876;
   margin-top: 10px;
   margin-bottom: 10px;
   cursor: pointer;
